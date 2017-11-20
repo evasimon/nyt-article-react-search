@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "http://api.nytimes.com/svc/search/v2/articlesearch.json?q="
+const baseUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q="
 const apiKey = "8e99b992c8bf4e65adc4c55b111897e5";
 
 export default {
