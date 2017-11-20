@@ -13,6 +13,8 @@ import {
     Redirect
 } from 'react-router-dom'
 
+import "./Main.css";
+
 class Main extends Component {
 
     render() {
