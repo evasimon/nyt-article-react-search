@@ -44,23 +44,23 @@ class Search extends Component {
 
     render() {
         return (
-            <Container fluid>
+            <Container>
                 <Row>
-                    <Col size="md-6">
+                    <Col size="md-12">
                         <Jumbotron>
-                            <h1>Search for New Article</h1>
+                            <h2 className="mb-3">Search for New Article</h2>
+                            <form>
+                                <Input name="topic" value={this.state.topic} onChange={this.handleInputChange} placeholder="Topic (required)" required />
+                                <Input name="startYear" value={this.state.startYear} onChange={this.handleInputChange} placeholder="Start Year" />
+                                <Input name="endYear" value={this.state.endYear} onChange={this.handleInputChange} placeholder="End Year" />
+                                <FormBtn onClick={this.searchArticles}>Search Article</FormBtn>
+                            </form>
                         </Jumbotron>
-                        <form>
-                            <Input name="topic" value={this.state.topic} onChange={this.handleInputChange} placeholder="Topic (required)" required />
-                            <Input name="startYear" value={this.state.startYear} onChange={this.handleInputChange} placeholder="Start Year" />
-                            <Input name="endYear" value={this.state.endYear} onChange={this.handleInputChange} placeholder="End Year" />
-                            <FormBtn onClick={this.searchArticles}>Search Article</FormBtn>
-                        </form>
                     </Col>
-                    <Col size="md-6">
+                    <Col size="md-12">
                         <Jumbotron>
-                            <h1>Search Result</h1>
-                        </Jumbotron>
+                            <h2>Search Result</h2>
+                        
                         {this.state.result.length ? (
                             <List>
                                 {this.state.result.map(article => (
@@ -74,9 +74,11 @@ class Search extends Component {
                                     </ListItem>
                                 ))}
                             </List>
+                            
                         ) : (
-                                <h3>No Results to Display</h3>
+                                <p>No Results to Display</p>
                             )}
+                        </Jumbotron>
                     </Col>
                 </Row>
             </Container>

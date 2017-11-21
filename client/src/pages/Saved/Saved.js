@@ -33,28 +33,29 @@ class Saved extends Component {
 
     render() {
         return (
-            <Container fluid>
+            <Container>
                 <Row>
-                    <Col size="md-6">
+                    <Col size="md-12">
                         <Jumbotron>
-                            <h1>My Favorite Articles</h1>
+                            <h2>My Favorite Articles</h2>
+
+                            {this.state.articles.length ? (
+                                <List>
+                                    {this.state.articles.map(article => (
+                                        <ListItem key={article._id}>
+                                            <a href={article.url}>
+                                                <strong>
+                                                    {article.title}
+                                                </strong>
+                                            </a>
+                                            <DeleteBtn onClick={() => this.deleteArticle(article._id)} />
+                                        </ListItem>
+                                    ))}
+                                </List>
+                            ) : (
+                                    <h3>No Results to Display</h3>
+                                )}
                         </Jumbotron>
-                        {this.state.articles.length ? (
-                            <List>
-                                {this.state.articles.map(article => (
-                                    <ListItem key={article._id}>
-                                        <a href={article.url}>
-                                            <strong>
-                                                {article.title}
-                                            </strong>
-                                        </a>
-                                        <DeleteBtn onClick={() => this.deleteArticle(article._id)} />
-                                    </ListItem>
-                                ))}
-                            </List>
-                        ) : (
-                                <h3>No Results to Display</h3>
-                            )}
                     </Col>
                 </Row>
             </Container>
