@@ -10,14 +10,12 @@ class Saved extends Component {
     state = {
         articles: []
     }
+
     componentDidMount() {
         this.loadSavedArticles();
-        // this.searchArticles("Donald Trump");
     }
 
     loadSavedArticles = () => {
-        console.log("get articles")
-
         API.getArticles()
             .then(res => {
                 this.setState({
@@ -32,6 +30,7 @@ class Saved extends Component {
             .then(res => this.loadSavedArticles())
             .catch(err => console.log(err));
     }
+
     render() {
         return (
             <Container fluid>
@@ -62,6 +61,5 @@ class Saved extends Component {
         )
     }
 }
-
 
 export default Saved;

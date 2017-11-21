@@ -9,12 +9,14 @@ import API from "../../utils/API";
 class Search extends Component {
     state = {
         topic: "",
+        startYear: "",
+        endYear: "",
         result: []
     }
 
     searchArticles = event => {
         event.preventDefault();
-        API.search(this.state.topic)
+        API.search(this.state.topic, this.state.startYear, this.state.endYear)
             .then(res => this.setState({
                 result: res.data.response.docs,
                 topic: ""
@@ -23,11 +25,12 @@ class Search extends Component {
     };
 
     saveArticle = (title, url) => {
+        console.log("We did get here actually")
         API.saveArticle({
             title: title,
             url: url
         }).then(res => this.loadSavedArticles())
-            .catch(err => console.log(err));
+            .catch(err => console.log(err, "the error <<<<<<"));
     }
 
     handleInputChange = (event) => {
@@ -48,7 +51,9 @@ class Search extends Component {
                             <h1>Search for New Article</h1>
                         </Jumbotron>
                         <form>
-                            <Input name="topic" value={this.state.topic} onChange={this.handleInputChange} placeholder="Topic (required)" />
+                            <Input name="topic" value={this.state.topic} onChange={this.handleInputChange} placeholder="Topic (required)" required />
+                            <Input name="startYear" value={this.state.startYear} onChange={this.handleInputChange} placeholder="Start Year" />
+                            <Input name="endYear" value={this.state.endYear} onChange={this.handleInputChange} placeholder="End Year" />
                             <FormBtn onClick={this.searchArticles}>Search Article</FormBtn>
                         </form>
                     </Col>
