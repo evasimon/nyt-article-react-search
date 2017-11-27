@@ -6,7 +6,7 @@ A React-based rendition of a News Search application that allows user to search 
 
 ### Note:
 
-`[socket.io](http://socket.io)` is enabled for real-time communication. A notification is triggered whenever a user saves an article. The message includes the title of the saved article.
+`[socket.io]`(http://socket.io) is enabled for real-time communication. A notification is triggered whenever a user saves an article. The message includes the title of the saved article.
 
 Open multiple browsers. If you save an article in one browser, then all of your browsers should notify you that a new article was saved.
 
