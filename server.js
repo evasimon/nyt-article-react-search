@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 const routes = require("./routes")
-var app = require('express')();
+const app = require('express')();
 
 // serves up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -30,10 +30,10 @@ mongoose.connect(
 app.use(routes);
 
 // integrates socket.io
-var http = require('http').Server(app);
+const http = require('http').Server(app);
 // initializes a new instance of socket.io
 // by passing the http (the HTTP server) object
-var io = require('socket.io')(http);
+const io = require('socket.io')(http);
 // listens on the connection event for incoming sockets,
 //  and logs it to the console.
 io.on('connection', function (socket) {
