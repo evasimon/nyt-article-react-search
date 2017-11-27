@@ -1,10 +1,10 @@
 import React from "react";
 
 const Nav = () =>
-  <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
+  < nav className = "navbar navbar-expand-lg navbar-dark bg-dark mb-5" >
     <div className="container-fluid">
       <div className="navbar-header">
-        <button className="navbar-toggler" type="button" data-toggle="collapse">
+        <button className="navbar-toggler ham-btn" type="button" data-toggle="collapse">
           <span className="navbar-toggler-icon"></span>
         </button>
 
@@ -18,12 +18,12 @@ const Nav = () =>
               <a className="nav-link" href="/">Search</a>
             </li>
             <li className="nav-item">
-              Open New Browser to get notification when saving an article
+              <a className="nav-link" href="/" target="_blank">Open a New Window to get a notification when saving an article</a>
             </li>
           </ul>
         </div>
       </div>
     </div>
-  </nav>;
+  </nav >;
 
 export default Nav;
