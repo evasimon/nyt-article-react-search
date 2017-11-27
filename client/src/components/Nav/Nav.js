@@ -17,6 +17,9 @@ const Nav = () =>
             <li className="nav-item">
               <a className="nav-link" href="/">Search</a>
             </li>
+            <li className="nav-item">
+              Open New Browser to get notification when saving an article
+            </li>
           </ul>
         </div>
       </div>

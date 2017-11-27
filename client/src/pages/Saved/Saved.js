@@ -4,6 +4,7 @@ import DeleteBtn from "../../components/DeleteBtn";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import API from "../../utils/API";
+import openSocket from 'socket.io-client';
 
 
 class Saved extends Component {
@@ -12,7 +13,14 @@ class Saved extends Component {
     }
 
     componentDidMount() {
+        const socket = openSocket();
         this.loadSavedArticles();
+        const self = this;
+        socket.on('article', function (title) {
+            // console.log('article title saved: ' + title);
+            alert('article title saved: ' + title);
+            self.loadSavedArticles();
+        });
     }
 
     loadSavedArticles = () => {
@@ -37,8 +45,10 @@ class Saved extends Component {
                 <Row>
                     <Col size="md-12">
                         <Jumbotron>
+                            <p className="App-intro">
+                                Title Saved: {this.state.title}
+                            </p>
                             <h2>My Favorite Articles</h2>
-
                             {this.state.articles.length ? (
                                 <List>
                                     {this.state.articles.map(article => (

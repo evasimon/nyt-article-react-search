@@ -1,7 +1,7 @@
 {
-  "name": "mern",
+  "name": "nyt-article-react-search",
   "version": "1.0.0",
-  "description": "Mern Demo",
+  "description": "nyt article with react and socket.io",
   "main": "server.js",
   "scripts": {
     "server": "node server.js",
@@ -21,6 +21,8 @@
     "axios": "^0.17.1",
     "express": "^4.15.4",
     "mongoose": "^4.13.4",
-    "react-router-dom": "^4.2.2"
+    "react-router-dom": "^4.2.2",
+    "socket.io": "^2.0.4",
+    "socket.io-client": "^2.0.4"
   }
 }

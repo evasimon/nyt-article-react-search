@@ -5,6 +5,8 @@ import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
 import API from "../../utils/API";
+import openSocket from 'socket.io-client';
+const socket = openSocket();
 
 class Search extends Component {
     state = {
@@ -12,6 +14,13 @@ class Search extends Component {
         startYear: "",
         endYear: "",
         result: []
+    }
+
+    componentDidMount() {
+        socket.on('article', function (title) {
+            // console.log('article title saved: ' + title);
+            alert('Article title saved: ' + title);
+        });
     }
 
     searchArticles = event => {
@@ -25,12 +34,12 @@ class Search extends Component {
     };
 
     saveArticle = (title, url) => {
-        console.log("We did get here actually")
         API.saveArticle({
             title: title,
             url: url
-        }).then(res => this.loadSavedArticles())
-            .catch(err => console.log(err, "the error <<<<<<"));
+        }).then(() => {
+            socket.emit('articleSaved', title);
+        }).catch(err => console.log(err));
     }
 
     handleInputChange = (event) => {
@@ -60,24 +69,24 @@ class Search extends Component {
                     <Col size="md-12">
                         <Jumbotron>
                             <h2>Search Result</h2>
-                        
-                        {this.state.result.length ? (
-                            <List>
-                                {this.state.result.map(article => (
-                                    <ListItem key={article._id}>
-                                        <a href={article.web_url}>
-                                            <strong>
-                                                {article.headline.main}
-                                            </strong>
-                                        </a>
-                                        <SaveBtn onClick={() => this.saveArticle(article.headline.main, article.web_url)} />
-                                    </ListItem>
-                                ))}
-                            </List>
-                            
-                        ) : (
-                                <p>No Results to Display</p>
-                            )}
+
+                            {this.state.result.length ? (
+                                <List>
+                                    {this.state.result.map(article => (
+                                        <ListItem key={article._id}>
+                                            <a href={article.web_url}>
+                                                <strong>
+                                                    {article.headline.main}
+                                                </strong>
+                                            </a>
+                                            <SaveBtn onClick={() => this.saveArticle(article.headline.main, article.web_url)} />
+                                        </ListItem>
+                                    ))}
+                                </List>
+
+                            ) : (
+                                    <p>No Results to Display</p>
+                                )}
                         </Jumbotron>
                     </Col>
                 </Row>
